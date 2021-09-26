@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       title: "Sanckbar",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Dialog"),
+          title: Text("Bottom Sheet"),
         ),
         body: Center(
           child: Column(
@@ -20,62 +20,110 @@ class MyApp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               RaisedButton(
+                child: Text("Bottom Sheet"),
                 onPressed: () {
-                  //  Get.defaultDialog();
-                  Get.defaultDialog(
-                    title: "Dialog Title",
-                    middleText: "This is middle text",
-                    middleTextStyle: TextStyle(fontSize: 20),
+                  Get.bottomSheet(
+                    Container(
+                      child: Wrap(
+                        children: [
+                          ListTile(
+                            leading: Icon(Icons.wb_sunny_outlined),
+                            title: Text('Light Theme'),
+                            onTap: () => {
+                              Get.changeTheme(
+                                ThemeData.light(),
+                              )
+                            },
+                          ),
+                          ListTile(
+                            leading: Icon(Icons.wb_sunny),
+                            title: Text('Dark Theme'),
+                            onTap: () => {
+                              Get.changeTheme(
+                                ThemeData.dark(),
+                              )
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    barrierColor: Colors.greenAccent.shade100,
                     backgroundColor: Colors.purple,
-                    radius: 50,
-                    //To Custom the middle Text
-                    content: Row(
-                      children: [
-                        CircularProgressIndicator(),
-                        SizedBox(
-                          width: 16,
-                        ),
-                        Expanded(
-                          child: Text("Data Loading"),
-                        ),
-                      ],
+                    isDismissible: true,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      side: BorderSide(
+                          color: Colors.white,
+                          style: BorderStyle.solid,
+                          width: 2.0),
                     ),
-
-                    //Default cancle and confirm action
-                    textCancel: "Cancle",
-                    cancelTextColor: Colors.white,
-                    textConfirm: "Confirm",
-                    confirmTextColor: Colors.white,
-                    onCancel: () {},
-                    onConfirm: () {},
-                    buttonColor: Colors.green,
-                    cancel: Text(
-                      "Cancels",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    confirm: Text(
-                      "Confirms",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    actions: [
-                      RaisedButton(
-                        onPressed: () {
-                          Get.back();
-                        },
-                        child: Text("Action-2"),
-                      ),
-                      RaisedButton(
-                        onPressed: () {
-                          Get.back();
-                        },
-                        child: Text("Action-1"),
-                      ),
-                    ],
-                    barrierDismissible: false,
+                   // enableDrag: false,
                   );
                 },
-                child: Text("Show Dialog"),
-              )
+              ),
+
+              //Dialog
+              // RaisedButton(
+              //   onPressed: () {
+              //     //  Get.defaultDialog();
+              //     Get.defaultDialog(
+              //       title: "Dialog Title",
+              //       middleText: "This is middle text",
+              //       middleTextStyle: TextStyle(fontSize: 20),
+              //       backgroundColor: Colors.purple,
+              //       radius: 50,
+              //       //To Custom the middle Text
+              //       content: Row(
+              //         children: [
+              //           CircularProgressIndicator(),
+              //           SizedBox(
+              //             width: 16,
+              //           ),
+              //           Expanded(
+              //             child: Text("Data Loading"),
+              //           ),
+              //         ],
+              //       ),
+              //
+              //       //Default cancle and confirm action
+              //       textCancel: "Cancle",
+              //       cancelTextColor: Colors.white,
+              //       textConfirm: "Confirm",
+              //       confirmTextColor: Colors.white,
+              //       onCancel: () {},
+              //       onConfirm: () {},
+              //       buttonColor: Colors.green,
+              //       cancel: Text(
+              //         "Cancels",
+              //         style: TextStyle(color: Colors.white),
+              //       ),
+              //       confirm: Text(
+              //         "Confirms",
+              //         style: TextStyle(color: Colors.white),
+              //       ),
+              //       actions: [
+              //         RaisedButton(
+              //           onPressed: () {
+              //             Get.back();
+              //           },
+              //           child: Text("Action-2"),
+              //         ),
+              //         RaisedButton(
+              //           onPressed: () {
+              //             Get.back();
+              //           },
+              //           child: Text("Action-1"),
+              //         ),
+              //       ],
+              //       barrierDismissible: false,
+              //     );
+              //   },
+              //   child: Text("Show Dialog"),
+              // ),
+              //
+
+              //Snackbar
+
               // RaisedButton(
               //   child: Text("Show Snackbar"),
               //   onPressed: () {
