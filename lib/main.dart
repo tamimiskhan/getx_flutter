@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'home.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -12,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: "Sanckbar",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Bottom Sheet"),
+          title: Text("Navigation"),
         ),
         body: Center(
           child: Column(
@@ -20,47 +22,69 @@ class MyApp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               RaisedButton(
-                child: Text("Bottom Sheet"),
-                onPressed: () {
-                  Get.bottomSheet(
-                    Container(
-                      child: Wrap(
-                        children: [
-                          ListTile(
-                            leading: Icon(Icons.wb_sunny_outlined),
-                            title: Text('Light Theme'),
-                            onTap: () => {
-                              Get.changeTheme(
-                                ThemeData.light(),
-                              )
-                            },
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.wb_sunny),
-                            title: Text('Dark Theme'),
-                            onTap: () => {
-                              Get.changeTheme(
-                                ThemeData.dark(),
-                              )
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                    barrierColor: Colors.greenAccent.shade100,
-                    backgroundColor: Colors.purple,
-                    isDismissible: true,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      side: BorderSide(
-                          color: Colors.white,
-                          style: BorderStyle.solid,
-                          width: 2.0),
-                    ),
-                   // enableDrag: false,
-                  );
+                child: Text("Go to Home"),
+                onPressed: () async {
+                  // Get.to(
+                  //   Home(),
+                  //   fullscreenDialog: true,
+                  //   transition: Transition.downToUp,
+                  //   duration: Duration(milliseconds: 3000),
+                  //   curve: Curves.bounceInOut,
+                  //
+                  // );
+
+                //  Get.to(Home(),arguments: "Data from Main");
+
+                  var data=await Get.to(Home());
+                  print("This Received data is $data");
+
+
                 },
-              ),
+              )
+
+              //Bottom sheet
+              // RaisedButton(
+              //   child: Text("Bottom Sheet"),
+              //   onPressed: () {
+              //     Get.bottomSheet(
+              //       Container(
+              //         child: Wrap(
+              //           children: [
+              //             ListTile(
+              //               leading: Icon(Icons.wb_sunny_outlined),
+              //               title: Text('Light Theme'),
+              //               onTap: () => {
+              //                 Get.changeTheme(
+              //                   ThemeData.light(),
+              //                 )
+              //               },
+              //             ),
+              //             ListTile(
+              //               leading: Icon(Icons.wb_sunny),
+              //               title: Text('Dark Theme'),
+              //               onTap: () => {
+              //                 Get.changeTheme(
+              //                   ThemeData.dark(),
+              //                 )
+              //               },
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //       barrierColor: Colors.greenAccent.shade100,
+              //       backgroundColor: Colors.purple,
+              //       isDismissible: true,
+              //       shape: RoundedRectangleBorder(
+              //         borderRadius: BorderRadius.circular(10.0),
+              //         side: BorderSide(
+              //             color: Colors.white,
+              //             style: BorderStyle.solid,
+              //             width: 2.0),
+              //       ),
+              //      // enableDrag: false,
+              //     );
+              //   },
+              // ),
 
               //Dialog
               // RaisedButton(
