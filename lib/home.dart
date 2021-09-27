@@ -18,7 +18,10 @@ class Home extends StatelessWidget {
               style: TextStyle(color: Colors.purpleAccent, fontSize: 30),
             ),
             RaisedButton(
-              onPressed: () {},
+              onPressed: () {
+              //  Get.toNamed("/nextScreen");
+                Get.toNamed("/nextScreen/1234");
+              },
               child: Text(
                 "Next Screen",
                 style: TextStyle(fontSize: 18),
@@ -45,7 +48,9 @@ class Home extends StatelessWidget {
               height: 8,
             ),
             Text(
-              "${Get.arguments}",
+              // "${Get.arguments}",
+              "Channel name is ${Get.parameters['channel']} and content is ${Get.parameters['content']}",
+
               style: TextStyle(color: Colors.green, fontSize: 20),
             )
           ],

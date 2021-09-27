@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+
 import 'home.dart';
+import 'next_screen.dart';
+import 'unknown_route.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -11,7 +15,31 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "Sanckbar",
+      title: "Navigation",
+      unknownRoute: GetPage(name: '/notfound' ,page: ()=>UnknownRoutePage()),
+      initialRoute: "/",
+      defaultTransition: Transition.zoom,
+      getPages: [
+        GetPage(
+          name: '/',
+          page: () => MyApp(),
+        ),
+        GetPage(
+          name: '/home',
+          page: () => Home(),
+        ),
+        // GetPage(
+        //   name: '/nextScreen',
+        //   page: () => NextScreen(),
+        //   transition: Transition.leftToRight,
+        // ),
+        GetPage(
+          name: '/nextScreen/:somevalue',
+          page: () => NextScreen(),
+          transition: Transition.leftToRight,
+        ),
+      ],
+
       home: Scaffold(
         appBar: AppBar(
           title: Text("Navigation"),
@@ -23,23 +51,29 @@ class MyApp extends StatelessWidget {
             children: [
               RaisedButton(
                 child: Text("Go to Home"),
-                onPressed: () async {
-                  // Get.to(
-                  //   Home(),
-                  //   fullscreenDialog: true,
-                  //   transition: Transition.downToUp,
-                  //   duration: Duration(milliseconds: 3000),
-                  //   curve: Curves.bounceInOut,
-                  //
-                  // );
+                onPressed: () {
+                  Get.toNamed(
+                    '/ddd',
+                  );
 
-                //  Get.to(Home(),arguments: "Data from Main");
-
-                  var data=await Get.to(Home());
-                  print("This Received data is $data");
-
-
+                 // Get.toNamed("/home?channel=Tamim Code&content=Flutter Getx",);
                 },
+
+                // onPressed: () async {
+                //   // Get.to(
+                //   //   Home(),
+                //   //   fullscreenDialog: true,
+                //   //   transition: Transition.downToUp,
+                //   //   duration: Duration(milliseconds: 3000),
+                //   //   curve: Curves.bounceInOut,
+                //   //
+                //   // );
+                //
+                //   //  Get.to(Home(),arguments: "Data from Main");
+                //
+                //   var data = await Get.to(Home());
+                //   print("This Received data is $data");
+                // },
               )
 
               //Bottom sheet
