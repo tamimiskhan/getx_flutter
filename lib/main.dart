@@ -10,15 +10,15 @@ class MyApp extends StatelessWidget {
 //If init property us not used Getx<Type of controller > then
 //create the instance of controller as follow
 
-   MyController myController = Get.put(MyController());
+  MyController myController = Get.put(MyController());
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "Controller Lifecycle",
+      title: "Unique id",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Controller Lifecycle"),
+          title: Text("Unique id"),
         ),
         body: Center(
           child: Column(
@@ -26,8 +26,19 @@ class MyApp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GetBuilder<MyController>(
-             //   initState: (data)=>myController.increment(),
-              //  dispose: (_)=>myController.cleanUpTask(),
+                id: 'txtCount',
+                //   initState: (data)=>myController.increment(),
+                //  dispose: (_)=>myController.cleanUpTask(),
+
+                builder: (controller) {
+                  return Text("The value is ${controller.count}",
+                      style: TextStyle(fontSize: 25));
+                },
+              ),
+              GetBuilder<MyController>(
+
+                //   initState: (data)=>myController.increment(),
+                //  dispose: (_)=>myController.cleanUpTask(),
 
                 builder: (controller) {
                   return Text("The value is ${controller.count}",
@@ -39,10 +50,10 @@ class MyApp extends StatelessWidget {
               ),
               RaisedButton(
                 onPressed: () {
-                 // myController.increment();
+                  // myController.increment();
 
                   //If instance of controller not create at top
-                   Get.find<MyController>().increment();
+                  Get.find<MyController>().increment();
                 },
                 child: Text("Increment"),
               )
