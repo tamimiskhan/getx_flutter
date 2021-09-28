@@ -10,15 +10,15 @@ class MyApp extends StatelessWidget {
 //If init property us not used Getx<Type of controller > then
 //create the instance of controller as follow
 
-  //MyController myController = Get.put(MyController());
+   MyController myController = Get.put(MyController());
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "State Management",
+      title: "Controller Lifecycle",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("State Management"),
+          title: Text("Controller Lifecycle"),
         ),
         body: Center(
           child: Column(
@@ -26,7 +26,9 @@ class MyApp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GetBuilder<MyController>(
-                init: MyController(),
+             //   initState: (data)=>myController.increment(),
+              //  dispose: (_)=>myController.cleanUpTask(),
+
                 builder: (controller) {
                   return Text("The value is ${controller.count}",
                       style: TextStyle(fontSize: 25));
