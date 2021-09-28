@@ -29,11 +29,11 @@ class MyController extends GetxController {
 
     //called every time  the user stops typing for 1 second
 
-    debounce(
-        count,
-        (_) => print(
-            "When the user stop typing for 1 sec the value of count will be printed"),
-        time: Duration(seconds: 1));
+    // debounce(
+    //     count,
+    //     (_) => print(
+    //         "When the user stop typing for 1 sec the value of count will be printed"),
+    //     time: Duration(seconds: 1));
 
     //Ignore all changes within 3 second.
     //imagine tha the user can earn coins by clicking on something,
