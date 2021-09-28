@@ -10,8 +10,7 @@ class MyApp extends StatelessWidget {
 //If init property us not used Getx<Type of controller > then
 //create the instance of controller as follow
 
-
-  MyController myController = Get.put(MyController());
+  //MyController myController = Get.put(MyController());
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +25,10 @@ class MyApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              GetX<MyController>(
-
+              GetBuilder<MyController>(
+                init: MyController(),
                 builder: (controller) {
-                  return Text("The value is ${myController.count}",
+                  return Text("The value is ${controller.count}",
                       style: TextStyle(fontSize: 25));
                 },
               ),
@@ -38,10 +37,10 @@ class MyApp extends StatelessWidget {
               ),
               RaisedButton(
                 onPressed: () {
-                  myController.increment();
+                 // myController.increment();
 
                   //If instance of controller not create at top
-                 // Get.find<MyController>().increment();
+                   Get.find<MyController>().increment();
                 },
                 child: Text("Increment"),
               )

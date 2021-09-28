@@ -5,5 +5,6 @@ class MyController extends GetxController {
 
   void increment() {
     count++;
+    update();
   }
 }
