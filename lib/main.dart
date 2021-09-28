@@ -7,6 +7,9 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+//If init property us not used Getx<Type of controller > then
+//create the instance of controller as follow
+
 
   MyController myController = Get.put(MyController());
 
@@ -23,20 +26,25 @@ class MyApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Obx(
-                () => Text(
-                  "Name is ${myController.student.value.name}",
-                  style: TextStyle(fontSize: 25),
-                ),
-              ),
-              RaisedButton(
-                child: Text("Upper"),
-                onPressed: () {
-                  myController.convertToUpperCase();
+              GetX<MyController>(
 
-                  //  student.name.value = student.name.value.toUpperCase();
+                builder: (controller) {
+                  return Text("The value is ${myController.count}",
+                      style: TextStyle(fontSize: 25));
                 },
               ),
+              SizedBox(
+                height: 16,
+              ),
+              RaisedButton(
+                onPressed: () {
+                  myController.increment();
+
+                  //If instance of controller not create at top
+                 // Get.find<MyController>().increment();
+                },
+                child: Text("Increment"),
+              )
             ],
           ),
         ),
