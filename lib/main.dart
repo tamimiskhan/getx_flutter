@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_flutter/Messages.dart';
 import 'package:getx_flutter/my_controller.dart';
 
 void main() {
@@ -15,30 +16,51 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "Unique id",
+      translations: Messages(),
+      locale: Locale('en', 'Us'),
+      fallbackLocale: Locale('en', 'Us'),
+      title: "Internationalization",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Unique id"),
+          title: Text("Internationalization"),
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Text(
+                'hello'.tr,
+                style: TextStyle(fontSize: 25, color: Colors.purpleAccent),
+              ),
+              SizedBox(
+                height: 16,
+              ),
               RaisedButton(
                 onPressed: () {
-                  myController.increment();
+                  myController.changeLanguage('bn','');
                 },
-                child: Text("Increment"),
+                child: Text("Bangla"),
               ),
-              Padding(
-                padding: EdgeInsets.all(16),
-                child: TextField(
-                  onChanged: (val) {
-                    myController.increment();
-                  },
-                ),
-              )
+              SizedBox(
+                height: 16,
+              ),
+              RaisedButton(
+                onPressed: () {
+                  myController.changeLanguage('en','US');
+                },
+                child: Text("English"),
+              ),SizedBox(
+                height: 16,
+              ),
+              RaisedButton(
+                onPressed: () {
+                  myController.changeLanguage('fr','FR');
+                },
+                child: Text("France"),
+              ),SizedBox(
+                height: 16,
+              ),
             ],
           ),
         ),
