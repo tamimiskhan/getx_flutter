@@ -25,37 +25,19 @@ class MyApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              GetBuilder<MyController>(
-                id: 'txtCount',
-                //   initState: (data)=>myController.increment(),
-                //  dispose: (_)=>myController.cleanUpTask(),
-
-                builder: (controller) {
-                  return Text("The value is ${controller.count}",
-                      style: TextStyle(fontSize: 25));
-                },
-              ),
-              GetBuilder<MyController>(
-
-                //   initState: (data)=>myController.increment(),
-                //  dispose: (_)=>myController.cleanUpTask(),
-
-                builder: (controller) {
-                  return Text("The value is ${controller.count}",
-                      style: TextStyle(fontSize: 25));
-                },
-              ),
-              SizedBox(
-                height: 16,
-              ),
               RaisedButton(
                 onPressed: () {
-                  // myController.increment();
-
-                  //If instance of controller not create at top
-                  Get.find<MyController>().increment();
+                  myController.increment();
                 },
                 child: Text("Increment"),
+              ),
+              Padding(
+                padding: EdgeInsets.all(16),
+                child: TextField(
+                  onChanged: (val) {
+                    myController.increment();
+                  },
+                ),
               )
             ],
           ),
