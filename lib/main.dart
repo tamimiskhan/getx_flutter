@@ -11,56 +11,44 @@ class MyApp extends StatelessWidget {
 //If init property us not used Getx<Type of controller > then
 //create the instance of controller as follow
 
-  MyController myController = Get.put(MyController());
+
+
+
 
   @override
   Widget build(BuildContext context) {
+
+
+// MyController myController = Get.put(MyController(), permanent: true);
+
+
+  //  Get.lazyPut(() => MyController(),tag: 'instance2',fenix: true);
+    
+   // Get.create<MyController>(() => MyController());
+
+    Get.putAsync<MyController>(() async=> await MyController());
     return GetMaterialApp(
-      translations: Messages(),
-      locale: Locale('en', 'Us'),
-      fallbackLocale: Locale('en', 'Us'),
-      title: "Internationalization",
+      title: "Dependancy Injection",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Internationalization"),
+          title: Text("Dependancy Injection"),
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                'hello'.tr,
-                style: TextStyle(fontSize: 25, color: Colors.purpleAccent),
-              ),
-              SizedBox(
-                height: 16,
-              ),
+
               RaisedButton(
                 onPressed: () {
-                  myController.changeLanguage('bn','');
+               // Get.find<MyController>(tag: 'instance1');
+                Get.find<MyController>();
+
+                Get.find<MyController>().incrementCounter();
                 },
-                child: Text("Bangla"),
+                child: Text("Clcik me"),
               ),
-              SizedBox(
-                height: 16,
-              ),
-              RaisedButton(
-                onPressed: () {
-                  myController.changeLanguage('en','US');
-                },
-                child: Text("English"),
-              ),SizedBox(
-                height: 16,
-              ),
-              RaisedButton(
-                onPressed: () {
-                  myController.changeLanguage('fr','FR');
-                },
-                child: Text("France"),
-              ),SizedBox(
-                height: 16,
-              ),
+
             ],
           ),
         ),
