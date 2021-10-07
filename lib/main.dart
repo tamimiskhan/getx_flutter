@@ -1,32 +1,69 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_flutter/commonModule/AppColor.dart';
-import 'package:getx_flutter/home.dart';
-import 'package:getx_flutter/home_controller_binding.dart';
-import 'package:getx_flutter/my_controller.dart';
-import 'package:getx_flutter/myapp_controller_binding.dart';
-import 'package:getx_flutter/productModule/views/product_list_view.dart';
+import 'package:get_storage/get_storage.dart';
 
-import 'commonModule/AppString.dart';
-
-void main() {
-  MyAppControllerBinding().dependencies();
+Future<void> main() async {
+  await GetStorage.init();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  var emailEditingController = TextEditingController();
+  var storage = GetStorage();
+
   @override
   Widget build(BuildContext context) {
-    Get.putAsync<MyController>(() async => await MyController());
     return GetMaterialApp(
-      // initialBinding: AllControllerBinding(),
-      title: AppString.fetchApiData,
-      theme: ThemeData(
-        primarySwatch: AppColor.purpleColor,
-
-      ) ,
+      title: "GetStorage & Email Validation",
       debugShowCheckedModeBanner: false,
-      home: ProductListView(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Get Storage & Email Validation"),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(16.0),
+                child: TextField(
+                  controller: emailEditingController,
+                ),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              Padding(
+                padding: EdgeInsets.all(16.0),
+                child: RaisedButton(
+                  onPressed: () {
+                    if (GetUtils.isEmail(emailEditingController.text)) {
+                      storage.write("email", emailEditingController.text);
+                    } else {
+                      Get.snackbar(
+                          "Incorrect Email", "Provide Email in valid format",
+                          colorText: Colors.white,
+                          backgroundColor: Colors.red,
+                          snackPosition: SnackPosition.BOTTOM);
+                    }
+                  },
+                  child: Text("Write"),
+                ),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              RaisedButton(
+                onPressed: () {
+                  print("The Email is ${storage.read("email")}");
+                },
+                child: Text("Read"),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
